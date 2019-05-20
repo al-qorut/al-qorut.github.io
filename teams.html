@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Info Teams</title>
+    <meta name="description" content="Football" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#00897B" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+       <!-- Navigasi -->
+    <nav class="teal lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a href="#" class="brand-logo" id="logo-container">Info Teams</a>
+        <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+          <i class="material-icons">arrow_back</i>
+        </a>
+        <ul class="topnav right hide-on-med-and-down"></ul>
+        <ul class="sidenav" id="nav-mobile"></ul>
+      </div>
+    </nav>
+    <!-- Akhir Navigasi -->
+    <div class="container" id="body-content"></div>
+    
+      <div class="fixed-action-btn">
+      <a class="btn-floating btn-large red" id="save">
+        <i class="large material-icons" id="btnAdd">favorite</i>
+      </a>
+    </div>
+    
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js" ></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+    
+    <script>
+      // REGISTER SERVICE WORKER
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then(function() {
+              console.log("[Teams.html]Pendaftaran ServiceWorker berhasil");
+            })
+            .catch(function() {
+              console.log("[teams.html]Pendaftaran ServiceWorker gagal");
+            });
+        });
+      } else {
+        console.log("[teams.html]ServiceWorker belum didukung browser ini.");
+      }
+document.addEventListener("DOMContentLoaded", function() {
+        var urlParams = new URLSearchParams(window.location.search);
+		var isFromSaved = urlParams.get("saved");
+		var isFavorited = false;
+		var save = document.getElementById("save");
+
+		if (isFromSaved) {
+			// Hide fab jika dimuat dari indexed db
+			save.style.display = 'none';
+    
+			// ambil artikel lalu tampilkan
+			getSavedClubById();
+		} else {
+			var item = getInfoClubById();
+			item.then(function (areas) {
+            data = areas;
+            checkFavorite(areas.id).then(function (favorite) {
+                if (favorite) {
+                    // Block jika item telah difavoritkan
+                    isFavorited = true;
+                    document.getElementById("btnAdd").innerHTML = "favorite";
+                } else {
+                   // Block jika item telah difavoritkan
+                    isFavorited = false;
+                    document.getElementById("btnAdd").innerHTML = "favorite_border";
+                }
+            })
+        });
+		}
+
+		save.onclick = function() {
+			//console.log("Tombol FAB di klik.");
+		item.then(function(club) {
+			if(isFavorited){
+				document.getElementById("btnAdd").innerHTML = "favorite_border";
+				delFavorite(club);
+			}else{
+				document.getElementById("btnAdd").innerHTML = "favorite";
+				saveForLater(club);
+			}
+		});
+  };
+	});
+    </script>
+  </body>
+</html>
