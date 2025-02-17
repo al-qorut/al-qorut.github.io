@@ -5,5 +5,12 @@
 	"info": "Data Dzikir dan Do'a",
 	"date": "Sabtu, 15 Februari 2025"
 
+    },
+    {
+        "code": 2,
+        "name": "Version 2",
+	"info": "Data Dzikir dan Do'a penambahan 138 doa, shalawat dan hizb total 525 item",
+	"date": "Senin, 16 Februari 2025"
+
     }
 ]

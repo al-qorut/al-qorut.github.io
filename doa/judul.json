@@ -93,5 +93,30 @@
         "idjdl": 18,
         "info": "Ma'tsurat",
         "judul": "Dzikir Petang"
+    },
+    {
+        "idjdl": 19,
+        "info": "Kumpulan doa-doa Rezeki",
+        "judul": "Doa Rezeki"
+    },
+    {
+        "idjdl": 20,
+        "info": "Kumpulan doa-doa Ilmu",
+        "judul": "Doa Ilmu"
+    },
+    {
+        "idjdl": 21,
+        "info": "Kumpulan Doa Pernikahan & Rumah Tangga",
+        "judul": "Doa dalam Keluarga"
+    },
+    {
+        "idjdl": 22,
+        "info": "Kumpulan Doa-doa Kelahiran dan Persalinan",
+        "judul": "Kelahiran dan Persalinan"
+    },
+    {
+        "idjdl": 23,
+        "info": "Kumpulan Doa Kualitas Diri",
+        "judul": "Kualitas Diri"
     }
 ]
